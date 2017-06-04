@@ -1,4 +1,4 @@
-const {ObjectID} = require('mongodb')
+const {ObjectID} = require('mongodb');
 const {mongoose} = require('./../server/db/mongoose');
 const {Todo} = require('./../server/models/todo');
 const {User} = require('./../server/models/user');
@@ -46,4 +46,5 @@ User.findById('59345cef315eec3462799ff1').then((user)=>{
    }
     
     console.log('User', user);
-},(e)=>{console.log(e)});         
+},(e)=>{console.log(e)});   
+

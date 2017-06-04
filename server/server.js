@@ -6,6 +6,8 @@ var {mongoose} =require('./db/mongoose.js');
 var {Todo}=require('./models/todo');
 
 var {User}= require('./models/user');
+var queries = require('./../playground/mongoose-queries.js');
+const {ObjectID} = require('mongodb');
 
 var app = express();
 
@@ -31,9 +33,30 @@ app.get('/todos', (req, res)=>{
     });
 });
 
+//GET Todos/id
+
+app.get('/todos/:id', (req, res)=>{
+  var id = req.params.id; //:id is the parameter on the get req object
+    
+    if(!ObjectID.isValid(id)){ //is the ID proper format?
+      return res.status(404).send();
+    }
+    
+     Todo.findById(id).then((todos)=>{
+       if(!todos){//the ID may be validated but might not exist
+           return res.status(404).send();
+       }
+         return   res.send({todos});
+       }).catch((e)=>{
+           res.status(400).send();
+       });
+  
+});
+
+
+
 app.listen(3000, ()=>{
     console.log('Started on port 3000');
 });
 
-module.exports =
-    {app}
+module.exports = {app}
