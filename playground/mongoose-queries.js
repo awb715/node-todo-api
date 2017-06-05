@@ -31,20 +31,20 @@ const {User} = require('./../server/models/user');
 
 
 //user not found, user is found, handle errors
-
-User.findById('59345cef315eec3462799ff2').then((user)=>{
-   if(!user){
-       return console.log('User not found');
-   }
-    
-    console.log('User', user);
-},(e)=>{console.log(e)});
-         
-User.findById('59345cef315eec3462799ff1').then((user)=>{
-   if(!user){
-       return console.log('User not found');
-   }
-    
-    console.log('User', user);
-},(e)=>{console.log(e)});   
+//
+//User.findById('59345cef315eec3462799ff2').then((user)=>{
+//   if(!user){
+//       return console.log('User not found');
+//   }
+//    
+//    console.log('User', user);
+//},(e)=>{console.log(e)});
+//         
+//User.findById('59345cef315eec3462799ff1').then((user)=>{
+//   if(!user){
+//       return console.log('User not found');
+//   }
+//    
+//    console.log('User', user);
+//},(e)=>{console.log(e)});   
 
