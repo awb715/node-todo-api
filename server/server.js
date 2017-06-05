@@ -11,6 +11,8 @@ const {ObjectID} = require('mongodb');
 
 var app = express();
 
+const port = process.env.PORT || 3000//heroku uses this for app.list
+
 app.use(bodyParser.json());
 
 app.post('/todos',(req, res)=>{
@@ -55,8 +57,8 @@ app.get('/todos/:id', (req, res)=>{
 
 
 
-app.listen(3000, ()=>{
-    console.log('Started on port 3000');
+app.listen(port, ()=>{
+    console.log(`Started up at port ${port}`);
 });
 
 module.exports = {app}
