@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
-var {Todo} = require('./models/todo');
+var {Todo} = require('./models/todo'); //set standards for inputting info
 var {User} = require('./models/user');
 var app = express();
 
@@ -74,7 +74,8 @@ app.delete('/todos/:id',(req,res)=>{
 
 app.patch('/todos/:id', (req,res)=>{
    var id = req.params.id;
-   var body = _.pick(req.body,['text','completed']); //sets so only text and cpmplted can be updated
+   var body = _.pick(req.body,['text','completed']); //sets so only text and cpmplted can be updated, normally request body is really big, this makes it so text, completed are the only keys on the object
+    
     
       if(!ObjectID.isValid(id)){ //is the ID proper format?
       return res.status(404).send();
