@@ -86,9 +86,9 @@ app.patch('/todos/:id', (req,res)=>{
     }
     
     if(_.isBoolean(body.completed) && body.completed){
-        body.completedAt = new Date().getTime();
+        body.completedAt = new Date().getTime(); //sets time todo was done
     }else{
-        body.completed = false
+        body.completed = false  //if todo wasnt completed, we clear complete values
         body.completedAt = null;
         
     }
@@ -105,6 +105,33 @@ app.patch('/todos/:id', (req,res)=>{
     });
 });
 
+
+
+//post /users
+
+app.post('/user', (req, res)=>{
+    
+    var body = _.pick(req.body,['email','password']);
+
+    var user = new User(body);
+    
+   
+//    user.generateAuthToken
+    
+    user.save().then(()=>{
+        return user.generateAuthToken();  //sends to server
+    }).then((token)=>{
+        res.header('x-auth',token).send(user);
+        
+        
+    }).catch((e)=>{
+        res.status(400).send(e);
+    })
+    
+
+    
+    
+});
 
 app.listen(port, ()=>{
     console.log(`Started up at port ${port}`);
