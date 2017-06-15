@@ -10,6 +10,7 @@ const {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo'); //set standards for inputting info
 var {User} = require('./models/user');
+var {authenticate} = require('./middleware/authenticate');
 var app = express();
 
 const port = process.env.PORT  //heroku uses this for app.list
@@ -131,6 +132,15 @@ app.post('/user', (req, res)=>{
 
     
     
+});
+
+
+
+
+//private route
+app.get('/users/me' , authenticate,(req , res)=>{
+  res.send(req.user);
+   
 });
 
 app.listen(port, ()=>{
