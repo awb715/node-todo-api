@@ -6,7 +6,7 @@ if (env === 'development'){
     process.env.MONGODB_URI = 'mongodb://localhost:27017/Todoapp';
 }else if (env ==='test'){
    process.env.PORT = 3000; 
-    process.env.MONGODB_URI = 'mongodb://localhost:27017/Todoapptest'
+    process.env.MONGODB_URI = 'mongodb://localhost:27017/Todoapptest';
 }
 
 //if we reun npm test, weare using Todoapp test locally
